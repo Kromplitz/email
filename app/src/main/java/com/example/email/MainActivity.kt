@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 intent.type = "text/plain"
                 intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
                 intent.putExtra(Intent.EXTRA_TEXT, message)
-                startActivity(Intent.createChooser(intent, "Send Mail"))
+                startActivity(Intent.createChooser(intent, null))
 
 
 
