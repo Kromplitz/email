@@ -14,22 +14,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val emailButton = findViewById<Button>(R.id.emailbutton)
+        val messageInput = findViewById<EditText>(R.id.messageInput)
+        val adressInput = findViewById<EditText>(R.id.adressInput)
 
         emailButton.setOnClickListener{
-
-            val messageInput = findViewById<EditText>(R.id.messageInput)
+            val email = adressInput.text.toString()
             val message = messageInput.text.toString()
-            val adressInput = findViewById<EditText>(R.id.adressInput)
 
-            adressInput?.let {
-                val adress = Uri.parse(adressInput.text.toString())
 
-                val intent = Intent(ACTION_SEND, adress)
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.data = Uri.parse("mailto:")
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
                 intent.putExtra(Intent.EXTRA_TEXT, message)
-                startActivity(intent)
+                startActivity(Intent.createChooser(intent, "Send Mail"))
 
 
-            }
+
+
 
         }
 
